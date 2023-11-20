@@ -8,7 +8,7 @@
     </head>
     <body>
         <header>
-            <div id="high-scores">View high scores</div>
+            <div id="go-to-high-scores">View high scores</div>
             <div id="timer">Time: <span id="timer-value"></span></div>
         </header>
         <main>
@@ -118,12 +118,12 @@
         </div>
 
         <div class="hidden">
-            <form id="final">
+            <form id="final" onsubmit="return false">
                 <h1>You are done!</h1>
-                <h2></h2>
+                <h2 id = "current-score"></h2>
                 <div>
                     <label for="initials"><input id="initials" type="text"></label>
-                    <input id="submit-score" type="submit">
+                    <button id="submit-score">Submit</button>
                 </div>                
             </form>
         </div>
@@ -133,7 +133,8 @@
                 <div id="high-scores-list">
                     <h1>Highscores!</h1>
                 </div>
-                <input type="submit" value="Home">
+                <button id="home">Home</button>
+                <button id="erase-high-scores">Erase Scores</button>
             </div>
         </div>
 
