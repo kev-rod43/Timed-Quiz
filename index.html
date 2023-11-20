@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>CSS Box Styling</title>
+        <title>Timed Quiz</title>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
@@ -13,9 +13,9 @@
         </header>
         <main>
         </main>
-        <footer id=""></footer>
+        <footer id="result"></footer>
 
-        <! -- Below are all the question cards. -->
+        <! -- Below are all the cards that will be systematilcally displayed. -->
         <div class="hidden">
             <div id="initial">
                 <h1>This is a Quiz</h1>
@@ -118,12 +118,22 @@
         </div>
 
         <div class="hidden">
-            <div id="final">
-                <h1>This is my final screen</h1>
-                <p>
-                    Description of the quiz
-                </p>
-                <button type="button">Restart </button>
+            <form id="final">
+                <h1>You are done!</h1>
+                <h2></h2>
+                <div>
+                    <label for="initials"><input id="initials" type="text"></label>
+                    <input id="submit-score" type="submit">
+                </div>                
+            </form>
+        </div>
+
+        <div class="hidden">
+            <div id="high-scores-card">
+                <div id="high-scores-list">
+                    <h1>Highscores!</h1>
+                </div>
+                <input type="submit" value="Home">
             </div>
         </div>
 
