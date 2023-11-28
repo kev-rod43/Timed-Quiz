@@ -60,6 +60,7 @@ function timedQuiz(){
         else{
             time.textContent = "";
             main.replaceChildren(final)
+            currentScore.textContent = "Score:" + score;
             clearTimeout(timer)
         }
     }, 1000)
@@ -103,29 +104,29 @@ function timedQuiz(){
     }
 
 //validates the highscore submission, and populates the highscores in the highscore card
-submitScore.addEventListener("click", function(event){
-    let initials = document.querySelector("#initials").value.toUpperCase();
-    event.preventDefault();
-     
-    if (!(isNaN(initials) && initials.length==2)){
-        alert("Your initials must be 2 alpabetical Characters");
-        return;
-    }
-
-    if (savedHighScores === null){
+    submitScore.addEventListener("click", function(event){
+        let initials = document.querySelector("#initials").value.toUpperCase();
+        event.preventDefault();
         
-        savedHighScores[initials]= score;
-        localStorage.setItem("saved-high-scores",JSON.stringify(savedHighScores));
-        createHighScoreLines()
+        if (!(isNaN(initials) && initials.length==2)){
+            alert("Your initials must be 2 alpabetical Characters");
+            return;
+        }
 
-    } else if (!(initials in savedHighScores)) {
-        savedHighScores[initials] = score;
-        createHighScoreLines()
-    } else if (confirm("These initials already exist, would you like to overwrite your previous score?")){
-        savedHighScores[initials] = score;
-        createHighScoreLines()
-    } else {
-        createHighScoreLines()
-    }
+        if (savedHighScores === null){
+            
+            savedHighScores[initials]= score;
+            localStorage.setItem("saved-high-scores",JSON.stringify(savedHighScores));
+            createHighScoreLines()
+
+        } else if (!(initials in savedHighScores)) {
+            savedHighScores[initials] = score;
+            createHighScoreLines()
+        } else if (confirm("These initials already exist, would you like to overwrite your previous score?")){
+            savedHighScores[initials] = score;
+            createHighScoreLines()
+        } else {
+            createHighScoreLines()
+        }
 })
 }
