@@ -15,6 +15,7 @@ let time = document.querySelector("#timer-value");
 let wrongAnswers = document.getElementsByClassName("wrong-answer");
 let rightAnswers = document.getElementsByClassName("right-answer");
 
+//loads local data for the high scores if it exists.
 let savedHighScores= new Object;
 if (JSON.parse(localStorage.getItem("saved-high-scores"))!==null){
     savedHighScores= JSON.parse(localStorage.getItem("saved-high-scores"));
@@ -28,7 +29,7 @@ document.querySelector("#erase-high-scores").addEventListener("click", function(
     localStorage.removeItem("saved-high-scores"); 
     location.reload();
 })
-
+//turns object into array, sorts array in descending order, then creates a h2 element with initials and score for each highscore.
 function createHighScoreLines(){
     let h2Element = document.createElement("h2")
     let sortedHighScores = Object.entries(savedHighScores).sort((a, b) => b[1] - a[1]);
@@ -65,16 +66,17 @@ function timedQuiz(){
         }
     }, 1000)
     
+    //adds the event listeners to each element in the classes
     for (i=0; i<wrongAnswers.length;i++){
         wrongAnswers[i].addEventListener("click", wrongResponse)
         wrongAnswers[i].style.cursor = "pointer";
     }
-    
     for (i=0; i<rightAnswers.length;i++){
         rightAnswers[i].addEventListener("click", rightResponse)
         rightAnswers[i].style.cursor = "pointer";
     }
-    
+
+    //subtracts time for every question wrong and displays the next question
     function wrongResponse(){
         seconds -= 10;
         if (questionCard.length>1){
@@ -88,7 +90,8 @@ function timedQuiz(){
             setTimeout ( function(){footer.textContent = "";}, 2000)
         }
     }
-    
+
+    //adds point for every question right and displays the next question
     function rightResponse(){
         score += 1;
         if (questionCard.length>1){
